@@ -36,8 +36,8 @@ export class HttpLogger {
     this.format = format;
     this.opts = opts;
     this.stream = {
-      write: (message) => {
-        this.highstorm.ingest(channelName, {
+      write: async (message) => {
+        await this.highstorm.ingest(channelName, {
           event: eventName || "HTTP",
           content: message,
         });
