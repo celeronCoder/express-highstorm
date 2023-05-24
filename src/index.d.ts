@@ -3,6 +3,8 @@ import type { StreamOptions, Options } from "morgan";
 import type { LogFormats } from "./index";
 import type { IncomingMessage, ServerResponse } from "http";
 
+export type { HttpLoggerOptions } from "./index";
+
 type Handler<
   Request extends IncomingMessage,
   Response extends ServerResponse
@@ -14,12 +16,7 @@ export class HttpLogger {
   protected format: LogFormats;
   protected opts: Options<IncomingMessage, ServerResponse<IncomingMessage>>;
 
-  constructor(
-    token: string,
-    channelName: string,
-    format: LogFormats,
-    opts: Options<IncomingMessage, ServerResponse<IncomingMessage>>
-  );
+  constructor(options: HttpLoggerOptions);
 
   middleware(): Handler<IncomingMessage, ServerResponse<IncomingMessage>>;
 }

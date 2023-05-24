@@ -5,25 +5,33 @@ import type { IncomingMessage, ServerResponse } from "http";
 
 export type LogFormats = "combined" | "common" | "dev" | "short" | "tiny";
 
+export type HttpLoggerOptions = {
+  token: string;
+  channelName: string;
+  format: LogFormats;
+  opts?: morgan.Options<
+    http.IncomingMessage,
+    http.ServerResponse<http.IncomingMessage>
+  >;
+  eventName?: string;
+};
+
 export class HttpLogger {
   protected highstorm: Highstorm;
   protected stream: StreamOptions;
   protected format: LogFormats;
-  protected opts: morgan.Options<
+  protected opts?: morgan.Options<
     IncomingMessage,
     ServerResponse<IncomingMessage>
   >;
 
-  constructor(
-    token: string,
-    channelName: string,
-    format: LogFormats = "combined",
-    opts: morgan.Options<
-      http.IncomingMessage,
-      http.ServerResponse<http.IncomingMessage>
-    >,
-    eventName?: string
-  ) {
+  constructor({
+    token,
+    channelName,
+    format = "combined",
+    opts,
+    eventName,
+  }: HttpLoggerOptions) {
     this.highstorm = new Highstorm({ token: token });
     this.format = format;
     this.opts = opts;
