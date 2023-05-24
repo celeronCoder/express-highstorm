@@ -1,0 +1,31 @@
+{
+  "name": "express-highstorm",
+  "version": "1.0.0",
+  "description": "A HTTP Logger Middleware for Express that streams the log-data to highstorm.app",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "types": "./src/index.d.ts",
+  "keywords": [
+    "express",
+    "morgan",
+    "logger",
+    "http-logger",
+    "highstorm"
+  ],
+  "author": "Khushal Bhardwaj <celeroncoder@gmial.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/morgan": "^1.9.4",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@highstorm/client": "^0.0.2",
+    "morgan": "^1.10.0"
+  },
+  "peerDependencies": {
+    "@highstorm/client": "^0.0.2",
+    "morgan": "^1.10.0"
+  }
+}
